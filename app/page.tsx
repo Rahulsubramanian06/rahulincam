@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -33,13 +34,21 @@ export default function Home() {
       {/* PARALLAX IMAGE */}
       <section className="h-[120vh] flex items-center justify-center">
 
-        <motion.img
+        <motion.div
           initial={{scale:1.3}}
           whileInView={{scale:1}}
           transition={{duration:1.2}}
-          src="/myself_white.jpeg"
-          className="rounded-xl w-[80%] shadow-2xl"
-        />
+          className="relative w-[80%] h-96 rounded-xl shadow-2xl overflow-hidden"
+        >
+          <Image
+            src="/myself_white.jpeg"
+            alt="Rahul Portrait"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 80vw"
+            className="object-cover rounded-xl"
+          />
+        </motion.div>
 
       </section>
 
@@ -65,15 +74,23 @@ export default function Home() {
       "gimbal.jpeg"
     ].map((img,i)=>(
 
-      <motion.img
+      <motion.div
         key={i}
-        src={`/${img}`}
         whileHover={{scale:1.03}}
         whileInView={{opacity:1,y:0}}
         initial={{opacity:0,y:40}}
         transition={{duration:0.6}}
-        className="w-full rounded-xl shadow-lg"
-      />
+        className="relative w-full h-96 rounded-xl shadow-lg overflow-hidden"
+      >
+        <Image
+          src={`/${img}`}
+          alt={`Gallery image ${i + 1}`}
+          fill
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover rounded-xl"
+        />
+      </motion.div>
 
     ))}
 
