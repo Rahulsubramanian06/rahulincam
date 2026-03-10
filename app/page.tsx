@@ -80,15 +80,16 @@ export default function Home() {
         whileInView={{opacity:1,y:0}}
         initial={{opacity:0,y:40}}
         transition={{duration:0.6}}
-        className="relative w-full h-96 rounded-xl shadow-lg overflow-hidden"
+        className="w-full rounded-xl shadow-lg overflow-hidden break-inside-avoid"
       >
         <Image
           src={`/${img}`}
           alt={`Gallery image ${i + 1}`}
-          fill
+          width={400}
+          height={500}
           loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover rounded-xl"
+          className="w-full h-auto object-cover rounded-xl"
         />
       </motion.div>
 
