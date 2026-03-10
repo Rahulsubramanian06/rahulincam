@@ -7,12 +7,32 @@ export default function Home() {
   return (
     <main className="bg-black text-white overflow-x-hidden">
 
+      {/* PARALLAX IMAGE */}
+      <section className="h-screen flex items-center justify-center">
+
+        <motion.div
+          initial={{scale:1.3}}
+          whileInView={{scale:1}}
+          transition={{duration:1.2}}
+          className="relative w-full h-full overflow-hidden"
+        >
+          <Image
+            src="/myself_white.jpeg"
+            alt="Rahul Portrait"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </motion.div>
+
+      </section>
       {/* HERO */}
       <section className="h-screen flex flex-col justify-center items-center text-center px-6">
 
         <motion.h1
           initial={{opacity:0, y:60}}
-          animate={{opacity:1, y:0}}
+          whileInView={{opacity:1, y:0}}
           transition={{duration:1}}
           className="text-6xl md:text-8xl font-bold tracking-tight"
         >
@@ -21,7 +41,7 @@ export default function Home() {
 
         <motion.p
           initial={{opacity:0}}
-          animate={{opacity:1}}
+          whileInView={{opacity:1}}
           transition={{delay:0.6}}
           className="mt-6 text-gray-400 text-lg md:text-xl"
         >
@@ -31,26 +51,6 @@ export default function Home() {
       </section>
 
 
-      {/* PARALLAX IMAGE */}
-      <section className="h-[120vh] flex items-center justify-center">
-
-        <motion.div
-          initial={{scale:1.3}}
-          whileInView={{scale:1}}
-          transition={{duration:1.2}}
-          className="relative w-[80%] h-96 rounded-xl shadow-2xl overflow-hidden"
-        >
-          <Image
-            src="/myself_white.jpeg"
-            alt="Rahul Portrait"
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 80vw"
-            className="object-cover rounded-xl"
-          />
-        </motion.div>
-
-      </section>
 
 
    {/* MASONRY GALLERY */}
