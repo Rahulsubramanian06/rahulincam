@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState } from "react"
 
 export default function Home() {
+  const [showContactButtons, setShowContactButtons] = useState(false)
   return (
     <main className="bg-black text-white overflow-x-hidden">
 
@@ -60,15 +62,14 @@ export default function Home() {
 
     {[
       "ppl1.jpeg",
-      "ppl2.jpeg",
       "ppl3.jpeg",
       "ppl4.jpeg",
+      "wed2.jpeg",
       "ppl5.jpeg",
       "re1.jpeg",
       "re2.jpeg",
       "kit.jpeg",
       "wed1.jpeg",
-      "wed2.jpeg",
       "wed3.jpeg",
       "yellow_portrait.jpeg",
       "gimbal.jpeg"
@@ -128,14 +129,73 @@ export default function Home() {
     Let's Work Together
   </h2>
 
-  <motion.a
-    href="mailto:rahul@rahulincam.com?subject=Photography Inquiry"
-    whileHover={{ scale: 1.08 }}
-    whileTap={{ scale: 0.95 }}
-    className="inline-block mt-8 px-8 py-4 bg-white text-black rounded-xl transition"
-  >
-    Book a Shoot
-  </motion.a>
+  <div className="mt-8">
+    {!showContactButtons ? (
+      <motion.button
+        onClick={() => setShowContactButtons(true)}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        className="inline-block px-8 py-4 bg-white text-black rounded-xl transition font-semibold text-lg shadow-lg hover:shadow-xl"
+      >
+        Book a Shoot
+      </motion.button>
+    ) : (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
+      >
+        {/* Email Button */}
+        <motion.a
+          href="mailto:rahulincam@gmail.com?subject=Photography Inquiry"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-xl transition font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl gap-2"
+          onClick={() => setShowContactButtons(false)}
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+          Email
+        </motion.a>
+
+        {/* WhatsApp Button */}
+        <motion.a
+          href="https://wa.me/919788559791"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-xl transition font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl gap-2"
+        >
+          <Image
+            src="/walogo.png"
+            alt="WhatsApp"
+            width={20}
+            height={20}
+            className="w-5 h-5"
+          />
+          WhatsApp
+        </motion.a>
+
+        {/* Call Button */}
+        <motion.a
+          href="tel:+919788559791"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-xl transition font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl gap-2"
+          onClick={() => setShowContactButtons(false)}
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+          Call
+        </motion.a>
+      </motion.div>
+    )}
+  </div>
 
 </section>
       
